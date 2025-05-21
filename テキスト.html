@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>バリュー経営倶楽部</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .document {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .document-header {
+            background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+            padding: 2.5rem 2rem;
+            color: white;
+            position: relative;
+        }
+        
+        .document-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+        
+        .document-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .document-body {
+            padding: 3rem;
+        }
+        
+        .document-content {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+        
+        .document-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            border-bottom: 3px solid #3a7bd5;
+            padding-bottom: 0.7rem;
+            display: inline-block;
+        }
+        
+        .document-paragraph {
+            margin-bottom: 2.5rem;
+        }
+        
+        .document-paragraph:last-child {
+            margin-bottom: 0;
+        }
+        
+        .highlight {
+            background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        
+        .emphasis {
+            font-weight: 500;
+            border-bottom: 2px solid #3a7bd5;
+            padding-bottom: 2px;
+            white-space: nowrap;
+        }
+        
+        .decoration {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        .decoration::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 0;
+        }
+        
+        .decoration::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: -10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 0;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .document-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .document-body {
+                padding: 2rem;
+            }
+            
+            .document-content {
+                font-size: 1.2rem;
+            }
+            
+            .document-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document fade-in">
+        <div class="document-header">
+            <div class="decoration"></div>
+            <h1>バリュー経営倶楽部</h1>
+        </div>
+        
+        <div class="document-body">
+            <div class="document-content">
+                <div class="document-title">バリュー経営倶楽部とは</div>
+                
+                <div class="document-paragraph">
+                    現在の価値を再認識し、<span class="highlight">"バリューフル"</span>な企業をを目指し、企業が成長し続ける"価値"を追求していく経営者コミュニティです。
+                </div>
+                
+                <div class="document-paragraph">
+                    時代は常に変化する中で、経営者は「何のために経営をしているのか？」という本質を考え、生き残るために必要な<span class="emphasis">ミッション・ビジョン・バリュー</span>を言語化し、常に価値創造をしなければなりません。
+                </div>
+                
+                <div class="document-paragraph">
+                    つまり価値の再発見をすることが令和時代の経営には必須です。真の課題に気づき、未来を切り拓く経営の型を学び、成長を実感できる経営を共に目指しましょう！
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Just ensure the fade-in animation plays
+            setTimeout(() => {
+                const documentElement = document.querySelector('.document');
+                if (documentElement) {
+                    documentElement.classList.add('fade-in');
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>
