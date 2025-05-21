@@ -2,10 +2,10 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>バリュー経営倶楽部</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
         
         * {
             margin: 0;
@@ -17,35 +17,33 @@
             font-family: 'Noto Sans JP', sans-serif;
             background-color: #f8f9fa;
             color: #333;
-            line-height: 1.9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            line-height: 1.7;
             min-height: 100vh;
-            padding: 2rem;
+            padding: 0;
+            margin: 0;
         }
         
         .document {
-            max-width: 800px;
             width: 100%;
             background: white;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         .document-header {
             background: linear-gradient(135deg, #3a7bd5, #00d2ff);
-            padding: 2.5rem 2rem;
+            padding: 1.8rem 1.5rem;
             color: white;
             position: relative;
         }
         
         .document-header h1 {
-            font-size: 2.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.03em;
         }
         
         .document-header::after {
@@ -54,33 +52,34 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 8px;
+            height: 5px;
             background: rgba(255, 255, 255, 0.2);
         }
         
         .document-body {
-            padding: 3rem;
+            padding: 1.8rem 1.5rem;
+            flex: 1;
         }
         
         .document-content {
-            font-size: 1.3rem;
-            line-height: 1.9;
+            font-size: 1.15rem;
+            line-height: 1.8;
             word-break: keep-all;
             overflow-wrap: break-word;
         }
         
         .document-title {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             color: #2c3e50;
-            border-bottom: 3px solid #3a7bd5;
-            padding-bottom: 0.7rem;
+            border-bottom: 2px solid #3a7bd5;
+            padding-bottom: 0.5rem;
             display: inline-block;
         }
         
         .document-paragraph {
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.8rem;
         }
         
         .document-paragraph:last-child {
@@ -105,10 +104,10 @@
         
         .decoration {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             z-index: 1;
@@ -117,10 +116,10 @@
         .decoration::before {
             content: '';
             position: absolute;
-            top: -15px;
-            right: -15px;
-            width: 40px;
-            height: 40px;
+            top: -10px;
+            right: -10px;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             z-index: 0;
@@ -129,10 +128,10 @@
         .decoration::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: -10px;
-            width: 30px;
-            height: 30px;
+            bottom: -8px;
+            left: -8px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             z-index: 0;
@@ -141,7 +140,7 @@
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeIn 0.8s ease forwards;
+            animation: fadeIn 0.6s ease forwards;
         }
         
         @keyframes fadeIn {
@@ -151,21 +150,23 @@
             }
         }
         
-        @media (max-width: 768px) {
-            .document-header h1 {
-                font-size: 2.2rem;
+        /* タップ時のハイライトを透明に */
+        * {
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        
+        /* iPhone X 以降の縁取り対応 */
+        @supports (padding: max(0px)) {
+            .document-header {
+                padding-top: max(1.8rem, env(safe-area-inset-top));
+                padding-left: max(1.5rem, env(safe-area-inset-left));
+                padding-right: max(1.5rem, env(safe-area-inset-right));
             }
             
             .document-body {
-                padding: 2rem;
-            }
-            
-            .document-content {
-                font-size: 1.2rem;
-            }
-            
-            .document-title {
-                font-size: 1.5rem;
+                padding-left: max(1.5rem, env(safe-area-inset-left));
+                padding-right: max(1.5rem, env(safe-area-inset-right));
+                padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
             }
         }
     </style>
@@ -198,13 +199,20 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Just ensure the fade-in animation plays
+            // ページが読み込まれたらすぐにフェードイン
             setTimeout(() => {
                 const documentElement = document.querySelector('.document');
                 if (documentElement) {
                     documentElement.classList.add('fade-in');
                 }
             }, 100);
+            
+            // スクロールとピンチズームを防止（オプショナル）
+            document.addEventListener('touchmove', function(e) {
+                if(e.scale !== 1) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
         });
     </script>
 </body>
